@@ -1,0 +1,234 @@
+<!doctype html>
+<!--
+  If words could hug you 🌹
+  ------------------------------------------------------------
+  This file is the skeleton of the site. You normally don't need to edit it.
+  • All text (Kyrgyz + English), the letter, photos and music path → content.js
+  • Behaviour (animations, language switch, scratch-to-reveal photos) → script.js
+  • Colours, fonts, layout → styles.css
+-->
+<html lang="ky">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Сөздөр кучактай алса 🌹</title>
+  <meta name="description" content="A little world, made with love.">
+  <!-- Asks search engines not to list this page. It does NOT make the site private. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#FFF9F7">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+  <!-- Fonts (with Cyrillic support). If they fail to load, elegant system fonts are used instead. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Nunito:wght@400;600;700&display=swap">
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="content.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body data-scene="intro">
+  <h1 class="sr-only" data-i18n="ui.siteTitle">Сөздөр кучактай алса</h1>
+
+  <noscript>
+    <p class="noscript">Бул кичинекей дүйнө JavaScript менен иштейт. Сураныч, аны браузерде күйгүз. · This little world needs JavaScript. Please enable it in your browser.</p>
+  </noscript>
+
+  <!-- Soft rose silhouettes behind the glass panels (decoration only) -->
+  <div class="bg-roses" aria-hidden="true"></div>
+
+  <!-- ===================== Top bar: language · chapters · music ===================== -->
+  <header class="topbar">
+    <div class="lang-toggle" role="group" data-i18n-attr="aria-label:ui.langGroup">
+      <button type="button" class="lang-btn" data-lang="ky" lang="ky" aria-pressed="true">Кыргызча</button>
+      <span class="lang-sep" aria-hidden="true">|</span>
+      <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="false">English</button>
+    </div>
+
+    <ol class="rosebuds" aria-hidden="true"></ol>
+
+    <div class="topbar-actions">
+      <button type="button" class="icon-btn chapters-btn" id="chapters-btn" aria-expanded="false" aria-controls="chapters-menu" data-i18n-attr="aria-label:nav.openChapters">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <button type="button" class="icon-btn music-btn" id="music-btn" aria-pressed="false" data-i18n-attr="aria-label:music.turnOn">
+        <svg class="icon-music" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 18V6l10-2v12" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="6.5" cy="18" r="2.5" fill="currentColor"/><circle cx="16.5" cy="16" r="2.5" fill="currentColor"/>
+          <path class="icon-slash" d="M4 4l16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="chapters-menu glass" id="chapters-menu" hidden data-i18n-attr="aria-label:nav.chapters">
+      <p class="chapters-title" data-i18n="nav.chapters"></p>
+      <ol class="chapters-list" id="chapters-list"></ol>
+      <p class="chapters-hint" data-i18n="nav.chaptersHint"></p>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== 1. INTRO ===================== -->
+    <section class="scene scene-intro is-active" data-scene="intro" aria-labelledby="intro-title">
+      <div class="petal-field" aria-hidden="true"></div>
+      <div class="scene-inner intro-inner">
+        <div class="intro-glow" aria-hidden="true">
+          <svg viewBox="-40 -40 80 80">
+            <path class="intro-heart" d="M0,-8 C0,-22 -22,-24 -22,-8 C-22,6 -4,16 0,22 C4,16 22,6 22,-8 C22,-24 0,-22 0,-8Z"/>
+          </svg>
+        </div>
+        <p class="eyebrow" data-i18n="intro.eyebrow"></p>
+        <h2 class="display" id="intro-title" data-i18n="intro.title" tabindex="-1"></h2>
+        <p class="lede" data-i18n="intro.greeting"></p>
+        <button type="button" class="btn btn-primary btn-large" id="open-surprise" data-i18n="intro.open"></button>
+        <p class="hint" data-i18n="intro.soundNote"></p>
+      </div>
+    </section>
+
+    <!-- ===================== 2. BOUQUET ===================== -->
+    <section class="scene scene-bouquet" data-scene="bouquet" aria-labelledby="bouquet-title" hidden>
+      <div class="petal-field" aria-hidden="true"></div>
+      <div class="scene-inner bouquet-inner">
+        <div class="bouquet-wrap" id="bouquet-wrap">
+          <div class="bouquet-art" id="bouquet-art" role="img" data-i18n-attr="aria-label:bouquet.alt">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" width="400" height="520" focusable="false" aria-hidden="true">
+              <defs>
+                <linearGradient id="bqi-paperFront" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#F7C9D7"/><stop offset="1" stop-color="#E88EAF"/>
+                </linearGradient>
+                <linearGradient id="bqi-paperBack" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#FFF4F7"/><stop offset="1" stop-color="#FCE4EC"/>
+                </linearGradient>
+                <radialGradient id="bqi-glow" cx=".5" cy=".42" r=".55">
+                  <stop offset="0" stop-color="#FFFFFF" stop-opacity=".9"/><stop offset="1" stop-color="#FCE4EC" stop-opacity="0"/>
+                </radialGradient>
+                <g id="bqi-rose">
+                  <path d="M-36,2 C-38,-22 -16,-36 0,-32 C16,-36 38,-22 36,2 C34,24 16,36 0,36 C-16,36 -34,24 -36,2Z" fill="currentColor"/>
+                  <path d="M-36,2 C-34,24 -16,36 0,36 C16,36 34,24 36,2 C26,18 12,24 0,24 C-12,24 -26,18 -36,2Z" fill="#B84F78" opacity=".2"/>
+                  <path d="M-26,-4 C-26,-22 -8,-28 4,-24 C18,-26 28,-12 24,2 C20,16 4,20 -8,16 C-20,12 -27,6 -26,-4Z" fill="#FFFFFF" opacity=".22"/>
+                  <path d="M-30,-8 C-22,-26 -4,-30 8,-26" fill="none" stroke="#B84F78" stroke-opacity=".35" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M30,-6 C26,-20 14,-26 4,-26" fill="none" stroke="#B84F78" stroke-opacity=".3" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M-22,12 C-10,22 12,22 22,10" fill="none" stroke="#B84F78" stroke-opacity=".3" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M2,-3 C7,-7 11,0 7,5 C2,10 -7,8 -9,1 C-11,-8 -2,-14 7,-13 C16,-12 20,-2 17,7 C14,15 4,18 -4,16" fill="none" stroke="#6E3450" stroke-opacity=".42" stroke-width="2.4" stroke-linecap="round"/>
+                  <ellipse cx="-12" cy="-18" rx="7" ry="3.5" fill="#FFFFFF" opacity=".4" transform="rotate(-25 -12 -18)"/>
+                </g>
+              </defs>
+              <ellipse cx="200" cy="230" rx="190" ry="210" fill="url(#bqi-glow)"/>
+              <path d="M58,168 L200,478 L342,168 Q276,108 200,118 Q124,108 58,168Z" fill="url(#bqi-paperBack)" stroke="#F4B8CB" stroke-width="1.5"/>
+              <g fill="none" stroke="#6F9E73" stroke-width="4" stroke-linecap="round"><path d="M200,148 Q200.0,264.0 200.0,400" /><path d="M262,178 Q240.3,279.0 203.1,400" /><path d="M140,180 Q161.0,280.0 197.0,400" /><path d="M234,224 Q222.1,302.0 201.7,400" /><path d="M170,226 Q180.5,303.0 198.5,400" /><path d="M296,232 Q262.4,306.0 204.8,400" /><path d="M106,234 Q138.9,307.0 195.3,400" /><path d="M200,272 Q200.0,326.0 200.0,400" /></g>
+              <g fill="#8DB38B"><g transform="translate(118,236) rotate(-160) scale(1.1)"><path d="M0,0 C10,-14 34,-16 48,-4 C34,8 12,10 0,0Z"/><path d="M2,0 C16,-4 30,-6 44,-4" fill="none" stroke="#5E8C61" stroke-width="1.4" opacity=".7"/></g><g transform="translate(284,236) rotate(-20) scale(1.1)"><path d="M0,0 C10,-14 34,-16 48,-4 C34,8 12,10 0,0Z"/><path d="M2,0 C16,-4 30,-6 44,-4" fill="none" stroke="#5E8C61" stroke-width="1.4" opacity=".7"/></g><g transform="translate(126,150) rotate(-128) scale(0.9)"><path d="M0,0 C10,-14 34,-16 48,-4 C34,8 12,10 0,0Z"/><path d="M2,0 C16,-4 30,-6 44,-4" fill="none" stroke="#5E8C61" stroke-width="1.4" opacity=".7"/></g><g transform="translate(276,146) rotate(-52) scale(0.9)"><path d="M0,0 C10,-14 34,-16 48,-4 C34,8 12,10 0,0Z"/><path d="M2,0 C16,-4 30,-6 44,-4" fill="none" stroke="#5E8C61" stroke-width="1.4" opacity=".7"/></g><g transform="translate(92,186) rotate(-175) scale(0.8)"><path d="M0,0 C10,-14 34,-16 48,-4 C34,8 12,10 0,0Z"/><path d="M2,0 C16,-4 30,-6 44,-4" fill="none" stroke="#5E8C61" stroke-width="1.4" opacity=".7"/></g><g transform="translate(310,184) rotate(-5) scale(0.8)"><path d="M0,0 C10,-14 34,-16 48,-4 C34,8 12,10 0,0Z"/><path d="M2,0 C16,-4 30,-6 44,-4" fill="none" stroke="#5E8C61" stroke-width="1.4" opacity=".7"/></g><g transform="translate(200,92) rotate(-90) scale(0.7)"><path d="M0,0 C10,-14 34,-16 48,-4 C34,8 12,10 0,0Z"/><path d="M2,0 C16,-4 30,-6 44,-4" fill="none" stroke="#5E8C61" stroke-width="1.4" opacity=".7"/></g></g>
+              <g fill="#FFFFFF" opacity=".95"><circle cx="144.7" cy="116.6" r="3.2"/><circle cx="76.5" cy="164.3" r="2.8"/><circle cx="75.8" cy="169.1" r="2.3"/><circle cx="179.1" cy="109.1" r="2.3"/><circle cx="169.4" cy="82.3" r="2.4"/><circle cx="104.1" cy="121.2" r="3.7"/><circle cx="227.3" cy="97.9" r="3.8"/><circle cx="60.3" cy="168.9" r="2.7"/><circle cx="103.5" cy="151.8" r="2.7"/><circle cx="291.2" cy="141.3" r="3.1"/><circle cx="247.9" cy="104.5" r="3.1"/><circle cx="94.4" cy="173.1" r="2.5"/><circle cx="262.2" cy="108.3" r="2.7"/><circle cx="230.8" cy="96.5" r="2.7"/><circle cx="302.8" cy="123.6" r="2.6"/><circle cx="227.5" cy="93.1" r="3.6"/><circle cx="273.4" cy="120.8" r="3.8"/><circle cx="88.0" cy="152.9" r="3.4"/><circle cx="91.7" cy="142.4" r="2.3"/><circle cx="264.9" cy="95.4" r="3.1"/><circle cx="307.0" cy="153.0" r="3.3"/><circle cx="235.3" cy="92.7" r="2.9"/><circle cx="322.5" cy="130.6" r="3.0"/><circle cx="250.1" cy="118.0" r="3.3"/><circle cx="261.2" cy="84.5" r="3.5"/><circle cx="128.1" cy="115.4" r="3.3"/></g>
+              <g transform="translate(200,128) scale(0.95)"><g class="rose" style="--d:0.35s"><use href="#bqi-rose" color="#E88EAF"/></g></g><g transform="translate(262,158) scale(0.92)"><g class="rose" style="--d:0.47s"><use href="#bqi-rose" color="#EFA3BE"/></g></g><g transform="translate(140,160) scale(0.9)"><g class="rose" style="--d:0.59s"><use href="#bqi-rose" color="#F4B8CB"/></g></g><g transform="translate(234,204) scale(1.0)"><g class="rose" style="--d:0.71s"><use href="#bqi-rose" color="#E88EAF"/></g></g><g transform="translate(170,206) scale(1.0)"><g class="rose" style="--d:0.83s"><use href="#bqi-rose" color="#F7C3D3"/></g></g><g transform="translate(296,212) scale(0.8)"><g class="rose" style="--d:0.95s"><use href="#bqi-rose" color="#F4B8CB"/></g></g><g transform="translate(106,214) scale(0.78)"><g class="rose" style="--d:1.07s"><use href="#bqi-rose" color="#F9D3DF"/></g></g><g transform="translate(200,252) scale(0.98)"><g class="rose" style="--d:1.19s"><use href="#bqi-rose" color="#F2A9C1"/></g></g>
+              <path d="M52,200 L200,490 L120,270Z" fill="#FCE4EC" stroke="#F4B8CB" stroke-width="1.2"/>
+              <path d="M348,200 L200,490 L280,270Z" fill="#FCE4EC" stroke="#F4B8CB" stroke-width="1.2"/>
+              <path d="M92,262 L200,496 L308,262 Q254,292 200,286 Q146,292 92,262Z" fill="url(#bqi-paperFront)"/>
+              <path d="M128,282 L196,470 M272,282 L204,470 M200,288 L200,478" stroke="#FFFFFF" stroke-opacity=".35" stroke-width="1.5" fill="none"/>
+              <g transform="translate(200,402)">
+                <path d="M-4,4 C-14,30 -24,52 -34,72" stroke="#B84F78" stroke-width="7" stroke-linecap="round" fill="none"/>
+                <path d="M4,4 C12,28 18,52 30,74" stroke="#B84F78" stroke-width="7" stroke-linecap="round" fill="none"/>
+                <path d="M0,0 C-20,-26 -58,-28 -56,-4 C-54,16 -22,10 0,0Z" fill="#B84F78"/>
+                <path d="M0,0 C20,-26 58,-28 56,-4 C54,16 22,10 0,0Z" fill="#B84F78"/>
+                <path d="M-8,-4 C-22,-16 -42,-16 -44,-6" stroke="#E88EAF" stroke-width="2" fill="none" opacity=".8"/>
+                <path d="M8,-4 C22,-16 42,-16 44,-6" stroke="#E88EAF" stroke-width="2" fill="none" opacity=".8"/>
+                <ellipse cx="0" cy="0" rx="10" ry="9" fill="#9B3F66"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <h2 class="display-sm bouquet-message" id="bouquet-title" data-i18n="bouquet.message" tabindex="-1"></h2>
+        <button type="button" class="btn btn-primary btn-large take-btn" id="take-flowers" data-i18n="bouquet.take"></button>
+        <p class="hint bouquet-hint" data-i18n="bouquet.skipHint"></p>
+        <div class="scene-nav">
+          <button type="button" class="btn btn-ghost" data-nav="back" data-i18n="nav.back"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 3. LETTER (one glass panel, typed, never erased) ===================== -->
+    <section class="scene scene-letter" data-scene="letter" aria-labelledby="letter-title" hidden>
+      <div class="scene-inner letter-inner">
+        <h2 class="display-sm" id="letter-title" tabindex="-1"></h2>
+
+        <!-- What sighted readers see: the letter typing itself out. -->
+        <div class="letter-panel glass" id="letter-panel" aria-hidden="true">
+          <div class="letter-body" id="letter-body"></div>
+        </div>
+        <!-- What screen readers get while typing: the whole letter at once (no letter-by-letter reading). -->
+        <div class="sr-only" id="letter-sr"></div>
+
+        <p class="letter-complete" id="letter-complete" role="status" hidden data-i18n="letter.complete"></p>
+        <div class="letter-controls" role="group" data-i18n-attr="aria-label:letter.controls">
+          <button type="button" class="btn btn-small btn-secondary" id="letter-pause" aria-pressed="false" data-i18n="letter.pause"></button>
+          <button type="button" class="btn btn-small btn-secondary" id="letter-skip" data-i18n="letter.skip"></button>
+          <button type="button" class="btn btn-small btn-secondary" id="letter-top" data-i18n="letter.toTop" hidden></button>
+          <button type="button" class="btn btn-small btn-ghost" id="letter-replay" data-i18n="letter.replay"></button>
+        </div>
+        <div class="scene-nav">
+          <button type="button" class="btn btn-ghost" data-nav="back" data-i18n="nav.back"></button>
+          <button type="button" class="btn btn-primary" data-nav="next" id="letter-continue" data-i18n="nav.continue"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 4. FROM YOUR DADDY (love notes) ===================== -->
+    <section class="scene scene-notes" data-scene="notes" aria-labelledby="notes-title" hidden>
+      <div class="petal-field" aria-hidden="true"></div>
+      <div class="scene-inner">
+        <h2 class="display-sm" id="notes-title" data-i18n="notes.title" tabindex="-1"></h2>
+        <p class="lede-sm" data-i18n="notes.intro"></p>
+        <ul class="notes-grid" id="notes-grid" data-i18n-attr="aria-label:notes.gridLabel"></ul>
+        <div class="scene-nav">
+          <button type="button" class="btn btn-ghost" data-nav="back" data-i18n="nav.back"></button>
+          <button type="button" class="btn btn-primary" data-nav="next" data-i18n="nav.continue"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 5. FINAL PAGE (photos revealed by scratching) ===================== -->
+    <section class="scene scene-final" data-scene="final" aria-labelledby="final-title" hidden>
+      <div class="petal-field" aria-hidden="true"></div>
+      <div class="scene-inner wide">
+        <h2 class="display" id="final-title" data-i18n="final.title" tabindex="-1"></h2>
+
+        <section class="gallery" aria-labelledby="gallery-title">
+          <h3 class="section-title" id="gallery-title" data-i18n="final.galleryTitle"></h3>
+          <p class="lede-sm" data-i18n="final.galleryHint"></p>
+          <div class="gallery-grid" id="gallery-grid"></div>
+          <p class="status-text" id="gallery-status" role="status" aria-live="polite"></p>
+        </section>
+
+        <div class="final-message glass">
+          <p data-i18n="final.message"></p>
+          <p class="signature" data-i18n="final.signature"></p>
+        </div>
+
+        <div class="closing-heart" aria-hidden="true">
+          <svg viewBox="-30 -30 60 60"><path d="M0,-8 C0,-20 -18,-22 -18,-8 C-18,4 -4,13 0,19 C4,13 18,4 18,-8 C18,-22 0,-20 0,-8Z"/></svg>
+        </div>
+
+        <p class="hint" data-i18n="final.revisit"></p>
+        <div class="scene-nav">
+          <button type="button" class="btn btn-ghost" data-nav="back" data-i18n="nav.back"></button>
+          <button type="button" class="btn btn-primary" id="replay-btn" data-i18n="final.replay"></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== Love-note reading view ===================== -->
+  <div class="modal" id="note-modal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-dialog note-dialog glass" role="dialog" aria-modal="true" aria-labelledby="note-modal-title" aria-describedby="note-modal-text">
+      <svg class="note-rose" id="note-rose" viewBox="-40 -40 80 80" aria-hidden="true"></svg>
+      <h3 class="sr-only" id="note-modal-title" data-i18n="notes.title"></h3>
+      <p class="note-modal-text" id="note-modal-text"></p>
+      <p class="note-modal-sign" data-i18n="notes.signature"></p>
+      <button type="button" class="btn btn-secondary btn-small" id="note-close" data-i18n="notes.close"></button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="fly-layer" id="fly-layer" aria-hidden="true"></div>
+</body>
+</html>
